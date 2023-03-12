@@ -1,12 +1,8 @@
 package com.example.termprojectbackend.controller;
 
+import com.example.termprojectbackend.data.dto.LoginDto;
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.termprojectbackend.data.dto.UserDto;
 import com.example.termprojectbackend.data.entity.User;
@@ -14,6 +10,7 @@ import com.example.termprojectbackend.service.UserService;
 
 @RestController()
 @RequestMapping("/user")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     private final UserService userService;
@@ -27,11 +24,21 @@ public class UserController {
         return String.format("Hello %s!", name);
     }
 
-    @PostMapping(path = "/create")
-    public String create(@RequestBody UserDto user) {
+    @PostMapping(path = "/register")
+    public String register(@RequestBody UserDto user) {
         User newUser = new User();
         BeanUtils.copyProperties(user, newUser);
-        userService.save(newUser);
-        return "Sefa";
+        userService.register(newUser);
+        return "User registered";
+    }
+
+    @PostMapping(path = "/login")
+    public User login(@RequestBody LoginDto user) {
+        User loggedUser = userService.login(user);
+        if (loggedUser != null){
+            return loggedUser;
+        } else {
+            return new User();
+        }
     }
 }

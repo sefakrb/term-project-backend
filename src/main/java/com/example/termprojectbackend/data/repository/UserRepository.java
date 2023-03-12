@@ -7,5 +7,6 @@ import com.example.termprojectbackend.data.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findUserById(Long id);
+    User findUserByUserName(String userName);
 
 }

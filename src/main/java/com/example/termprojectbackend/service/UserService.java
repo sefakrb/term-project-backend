@@ -1,5 +1,6 @@
 package com.example.termprojectbackend.service;
 
+import com.example.termprojectbackend.data.dto.LoginDto;
 import org.springframework.stereotype.Service;
 
 import com.example.termprojectbackend.data.entity.User;
@@ -14,7 +15,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void save(User user) {
+    public void register(User user) {
         userRepository.save(user);
+    }
+
+    public User login(LoginDto user) {
+        User loggedUser = userRepository.findUserByUserName(user.getUserName());
+        return loggedUser;
     }
 }

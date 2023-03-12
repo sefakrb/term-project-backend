@@ -2,10 +2,7 @@ package com.example.termprojectbackend.data.entity;
 
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +13,14 @@ import lombok.Setter;
 public class User {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "user_name", unique = true)
+    private String userName;
+
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "email")
     private String email;
