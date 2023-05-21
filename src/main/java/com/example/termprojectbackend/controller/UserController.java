@@ -10,7 +10,7 @@ import com.example.termprojectbackend.service.UserService;
 
 @RestController()
 @RequestMapping("/user")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000, https://term-project-frontend.onrender.com/")
 public class UserController {
 
     private final UserService userService;
