@@ -32,7 +32,7 @@ public class ContractService {
             return response;
         }
 
-        String url = "https://cerulean-badger-tux.cyclic.app/contract/create";
+        String url = "http://localhost:8090/contract/create";
         CreateContractDto request = new CreateContractDto();
 
         request.setName(contract.getNftName());
