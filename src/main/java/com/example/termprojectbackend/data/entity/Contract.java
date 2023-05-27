@@ -32,5 +32,16 @@ public class Contract {
     @Column(name = "is_ownable")
     private Boolean isOwnable;
 
+    @Column(name = "abi", columnDefinition = "TEXT")
+    private String abi;
+
+    @Column(name = "byteCode",columnDefinition = "TEXT")
+    private String byteCode;
+
+    @Column(name = "main_contract", columnDefinition = "TEXT")
+    private String mainContract;
+
+    @Column(name = "address")
+    private String address;
 
 }

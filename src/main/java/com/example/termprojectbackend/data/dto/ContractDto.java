@@ -16,7 +16,9 @@ public class ContractDto {
     private final Boolean isBurnable;
     private final Boolean isOwnable;
 
-    public ContractDto(Long id, Long userId, String nftName, String nftUri, Boolean isMintable, Boolean isBurnable, Boolean isOwnable) {
+
+    public ContractDto(Long id, Long userId, String nftName, String nftUri, Boolean isMintable,
+                       Boolean isBurnable, Boolean isOwnable) {
         this.id = id;
         this.userId = userId;
         this.nftName = nftName;

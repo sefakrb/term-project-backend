@@ -1,5 +1,6 @@
 package com.example.termprojectbackend.controller;
 
+import com.example.termprojectbackend.data.dto.AddAddressDto;
 import com.example.termprojectbackend.data.dto.ContractDto;
 import com.example.termprojectbackend.data.entity.Contract;
 import com.example.termprojectbackend.service.ContractService;
@@ -23,10 +24,12 @@ public class ContractController {
     public HashMap<String, Object> create(@RequestBody ContractDto contract) {
         Contract newContract = new Contract();
         BeanUtils.copyProperties(contract, newContract);
-        HashMap<String, Object> response = contractService.create(newContract);
-        // js backend istek at
-        //
-        return response;
+        return contractService.create(newContract);
+    }
+
+    @PostMapping(path = "/add-address")
+    public HashMap<String, Object> addAddress(@RequestBody AddAddressDto updateData) {
+        return contractService.addAddress(updateData);
     }
 
 }
