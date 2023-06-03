@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/contract")
-@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:3000","https://term-project-frontend.vercel.app/"})
 public class ContractController {
 
     private final ContractService contractService;
