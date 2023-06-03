@@ -32,7 +32,8 @@ public class ContractService {
             return response;
         }
 
-        String url = "http://localhost:8090/contract/create";
+        String url = "https://term-project-bc-production-9efe.up.railway.app/contract/create";
+
         CreateContractDto request = new CreateContractDto();
 
         request.setName(contract.getNftName());
