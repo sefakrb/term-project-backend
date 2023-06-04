@@ -38,4 +38,9 @@ public class ContractController {
         return contractService.addAddress(updateData);
     }
 
+    @GetMapping(path = "/deployed-contracts")
+    public HashMap<String, Object> contractAddresses(@RequestParam Long userId) {
+        return contractService.contractAddresses(userId);
+    }
+
 }

@@ -4,22 +4,27 @@ import com.example.termprojectbackend.data.dto.AddAddressDto;
 import com.example.termprojectbackend.data.dto.bcapi.request.CreateContractDto;
 import com.example.termprojectbackend.data.dto.bcapi.response.CreateContractResponse;
 import com.example.termprojectbackend.data.entity.Contract;
+import com.example.termprojectbackend.data.entity.User;
 import com.example.termprojectbackend.data.repository.ContractRepository;
+import com.example.termprojectbackend.data.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class ContractService {
     private final ContractRepository contractRepository;
-
+    private final UserRepository userRepository;
     private final RestTemplate restTemplate;
 
-    public ContractService(ContractRepository contractRepository, RestTemplate restTemplate) {
+    public ContractService(ContractRepository contractRepository,
+                           UserRepository userRepository,
+                           RestTemplate restTemplate) {
         this.contractRepository = contractRepository;
+        this.userRepository = userRepository;
         this.restTemplate = restTemplate;
     }
 
@@ -82,6 +87,24 @@ public class ContractService {
         } else {
             response.put("code", 1);
         }
+
+        return response;
+    }
+
+    public HashMap<String, Object> contractAddresses(Long userId) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        User user = userRepository.findUserById(userId);
+        if (user == null) {
+            response.put("code", 1);
+            response.put("error", "User is not exist!");
+            return response;
+        }
+
+        ArrayList<Contract> contracts = contractRepository.findContractsByUserId(userId);
+
+        response.put("code" , 0);
+        response.put("data" , contracts);
 
         return response;
     }
