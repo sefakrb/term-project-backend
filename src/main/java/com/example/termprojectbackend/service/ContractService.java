@@ -102,9 +102,16 @@ public class ContractService {
         }
 
         ArrayList<Contract> contracts = contractRepository.findContractsByUserId(userId);
+        ArrayList<String> addresses = new ArrayList<String>();
+
+        for (Contract contract : contracts) {
+            if (contract.getAddress() != null) {
+                addresses.add(contract.getAddress());
+            }
+        }
 
         response.put("code" , 0);
-        response.put("data" , contracts);
+        response.put("data" , addresses);
 
         return response;
     }

@@ -25,7 +25,7 @@ public class ContractController {
         if (contract.getUserId() == -1) {
             HashMap<String, Object> response = new HashMap<>();
             response.put("code", 1);
-            response.put("error", "Id is wrong!");
+            response.put("error", "userId is wrong!");
             return response;
         }
         Contract newContract = new Contract();
@@ -40,6 +40,12 @@ public class ContractController {
 
     @GetMapping(path = "/deployed-contracts")
     public HashMap<String, Object> contractAddresses(@RequestParam Long userId) {
+        if (userId == -1) {
+            HashMap<String, Object> response = new HashMap<>();
+            response.put("code", 1);
+            response.put("error", "userId is wrong!");
+            return response;
+        }
         return contractService.contractAddresses(userId);
     }
 
