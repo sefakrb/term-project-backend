@@ -22,7 +22,7 @@ public class ContractController {
 
     @PostMapping(path = "/create")
     public HashMap<String, Object> create(@RequestBody ContractDto contract) {
-        if (contract.getId() == -1) {
+        if (contract.getUserId() == -1) {
             HashMap<String, Object> response = new HashMap<>();
             response.put("code", 1);
             response.put("error", "Id is wrong!");
