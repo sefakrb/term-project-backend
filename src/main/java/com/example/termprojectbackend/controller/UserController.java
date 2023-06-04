@@ -10,8 +10,7 @@ import com.example.termprojectbackend.service.UserService;
 
 @RestController()
 @RequestMapping("/user")
-@CrossOrigin(origins = {"http://localhost:3000",
-        "https://term-project-frontend.vercel.app/"})
+@CrossOrigin(origins = "*")
 public class UserController {
 
     private final UserService userService;

@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/contract")
-@CrossOrigin(origins = {"http://localhost:3000","https://term-project-frontend.vercel.app/"})
+@CrossOrigin(origins = "*")
 public class ContractController {
 
     private final ContractService contractService;
@@ -22,6 +22,12 @@ public class ContractController {
 
     @PostMapping(path = "/create")
     public HashMap<String, Object> create(@RequestBody ContractDto contract) {
+        if (contract.getId() == -1) {
+            HashMap<String, Object> response = new HashMap<>();
+            response.put("code", 1);
+            response.put("error", "Id is wrong!");
+            return response;
+        }
         Contract newContract = new Contract();
         BeanUtils.copyProperties(contract, newContract);
         return contractService.create(newContract);
