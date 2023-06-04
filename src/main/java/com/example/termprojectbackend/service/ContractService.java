@@ -102,11 +102,14 @@ public class ContractService {
         }
 
         ArrayList<Contract> contracts = contractRepository.findContractsByUserId(userId);
-        ArrayList<String> addresses = new ArrayList<String>();
+        ArrayList<HashMap<String, Object>> addresses = new ArrayList<>();
 
         for (Contract contract : contracts) {
             if (contract.getAddress() != null) {
-                addresses.add(contract.getAddress());
+                HashMap<String, Object> item = new HashMap<>();
+                item.put("address", contract.getAddress());
+                item.put("nftName", contract.getNftName());
+                addresses.add(item);
             }
         }
 
