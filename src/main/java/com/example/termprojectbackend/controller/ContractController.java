@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/contract")
@@ -47,6 +48,17 @@ public class ContractController {
             return response;
         }
         return contractService.contractAddresses(userId);
+    }
+
+    @GetMapping(path = "/abi")
+    public HashMap<String, Object> abiOfContractAddress(@RequestParam String contractAddress) {
+        if (Objects.equals(contractAddress, "")) {
+            HashMap<String, Object> response = new HashMap<>();
+            response.put("code", 1);
+            response.put("error", "contractAddress is wrong!");
+            return response;
+        }
+        return contractService.abiOfContract(contractAddress);
     }
 
 }

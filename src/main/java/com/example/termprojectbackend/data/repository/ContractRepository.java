@@ -10,4 +10,6 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
 
     ArrayList<Contract> findContractsByUserId(Long userId);
 
+    Contract findContractsByAddress(String address);
+
 }

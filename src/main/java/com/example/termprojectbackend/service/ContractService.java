@@ -118,4 +118,17 @@ public class ContractService {
 
         return response;
     }
+
+    public HashMap<String, Object> abiOfContract(String contractAddress) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        Contract contract = contractRepository.findContractsByAddress(contractAddress);
+
+        if (contract != null) {
+            response.put("code" , 0);
+            response.put("data" , contract.getAbi());
+        }
+
+        return response;
+    }
 }
