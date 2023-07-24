@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.example.termprojectbackend.data.entity.User;
 import com.example.termprojectbackend.data.repository.UserRepository;
 
+import java.util.Objects;
+
 @Service
 public class UserService {
 
@@ -21,6 +23,10 @@ public class UserService {
 
     public User login(LoginDto user) {
         User loggedUser = userRepository.findUserByUserName(user.getUserName());
-        return loggedUser;
+        if (Objects.equals(loggedUser.getPassword(), user.getPassword())) {
+            return loggedUser;
+        } else {
+            return null;
+        }
     }
 }
